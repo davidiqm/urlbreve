@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\UrlHelper;
 use App\Models\Url;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -9,16 +10,28 @@ use Illuminate\Support\Facades\Redirect;
 class UrlController extends Controller
 {
 
-    public function show()
+    public function show(Request $request, $code)
     {
-        return null;
+        $url = Url::where('code', $code)->firstOrFail();
+
+        // dd($url);
+
+        if ($url)
+        {
+            return Redirect::away($url->url);
+        }
+        else
+        {
+            abort(404);
+        }
     }
 
     public function store(Request $request)
     {
-        $url = new Url;
+        //validaciones
 
-        $url->url = $request->url;
+        //shortUrl
+        $url = UrlHelper::createShortUrl($request->url);
 
         $url->save();
 

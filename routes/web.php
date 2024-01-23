@@ -4,9 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UrlController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 require __DIR__.'/auth.php';
 
@@ -33,4 +31,4 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('{code}', [UrlController::class, 'show'])->name('url.show');
-Route::get('/url', [UrlController::class, 'store'])->name('url.store');
+Route::post('/url', [UrlController::class, 'store'])->name('url.store');
