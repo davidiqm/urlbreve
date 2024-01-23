@@ -13,6 +13,10 @@ class UrlHelper
             'user_id' => auth()->user()->id
         ]);
 
+        $code = CodeGenerator::generateCode(auth()->user()->id);
+
+        $user->code = $code;
+
         return $user;
     }
 
