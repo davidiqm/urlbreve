@@ -35,30 +35,41 @@ export default function UrlForm() {
     }, [recentlySuccessful])
 
     return (
-        <form onSubmit={onSubmit}>
+        <div>
+            <div className="mb-3">
+                <h1>¡Acorta tu URL!</h1>
+            </div>
+
             <div>
-                <InputLabel htmlFor="url" value="Url" />
+                <form onSubmit={onSubmit} className="flex flex-row items-center gap-5">
+                    <div className="flex-auto">
+                        <TextInput
+                            id="url"
+                            onChange={handleUrlInput}
+                            className="w-full"
+                            type="url"
+                            required
+                            isFocused
+                            autoComplete="url"
+                            value={data.url}
+                            placeholder="Introduce tu URL"
+                        />
 
-                <TextInput
-                    id="url"
-                    className="mt-1 block w-full"
-                    onChange={handleUrlInput}
-                    type="url"
-                    required
-                    isFocused
-                    autoComplete="url"
-                    value={data.url}
-                />
+                    </div>
 
+                    <div>
+                        <PrimaryButton disabled={processing}>
+                            Acortar Url
+                        </PrimaryButton>
+                    </div>
+                </form>
+            </div>
+
+            <div className="">
                 {errors.url && <InputError className="mt-2" message={errors.url} />}
                 {urlError && <p>Url Error</p>}
             </div>
 
-            <div>
-                <PrimaryButton className="" disabled={processing}>
-                    Acortar Url
-                </PrimaryButton>
-            </div>
-        </form>
+        </div>
     )
 }

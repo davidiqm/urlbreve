@@ -19,7 +19,7 @@ require __DIR__.'/auth.php';
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/', [HomeController::class, 'index'])->name('/');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['verified'])->name('dashboard');
@@ -31,4 +31,5 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('{code}', [UrlController::class, 'show'])->name('url.show');
+Route::get('url/{id}', [UrlController::class, 'get'])->name('url.get');
 Route::post('/url', [UrlController::class, 'store'])->name('url.store');

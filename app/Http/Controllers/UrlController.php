@@ -6,15 +6,24 @@ use App\Helpers\UrlHelper;
 use App\Models\Url;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
 
 class UrlController extends Controller
 {
-
-    public function show(Request $request, $code)
+    public function get(Request $request, $id)
     {
-        $url = Url::where('code', $code)->firstOrFail();
+        $url = Url::where('id', $id)->firstOrFail();
+        $url->urlShorten = route("/") . "/" . $url->code;
 
-        // dd($url);
+        return Response::json($url);
+    }
+
+    public function show($code)
+    {
+
+        // dd($request);
+        // dd($code);
+        $url = Url::where('code', $code)->firstOrFail();
 
         if ($url)
         {
