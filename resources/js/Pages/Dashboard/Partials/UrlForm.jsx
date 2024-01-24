@@ -43,7 +43,7 @@ export default function UrlForm() {
                     id="url"
                     className="mt-1 block w-full"
                     onChange={handleUrlInput}
-                    pattern={URL_PATTERN}
+                    type="url"
                     required
                     isFocused
                     autoComplete="url"

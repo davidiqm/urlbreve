@@ -8,7 +8,7 @@ class CodeGenerator
 {
     protected static $characteres = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
-    public static function generateCode($id)
+    public static function generateCode($id = 0)
     {
         $randomNum = self::getRandomNum($id);
 

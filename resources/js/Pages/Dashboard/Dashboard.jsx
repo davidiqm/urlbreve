@@ -1,11 +1,9 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import UrlForm from './Partials/UrlForm';
+import UrlList from './Partials/UrlList';
 
 export default function Dashboard({ auth, urls }) {
-    const listUrls = urls.map(url =>
-        <li key={url.id}>{url.url}</li>
-    )
 
     return (
         <AuthenticatedLayout
@@ -19,10 +17,8 @@ export default function Dashboard({ auth, urls }) {
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <UrlForm />
 
-                        <ul>
-                            {urls && listUrls}
-                        </ul>
                     </div>
+                    {urls && <UrlList urls={urls} />}
                 </div>
             </div>
         </AuthenticatedLayout>
