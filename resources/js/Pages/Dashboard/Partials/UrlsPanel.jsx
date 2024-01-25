@@ -24,10 +24,10 @@ export default function UrlsPanel ({ urlList }) {
         <div className="flex flex-row auto-cols-max gap-4">
             <aside className="lg:w-72">
                 <table className="w-full border rounded-md">
-                    <thead className="bg-gray-200">
+                    <thead className="bg-gray-800">
                         <tr>
-                            <th>
-                                <strong>{urlList.length} Url's acortadas</strong>
+                            <th className="py-2">
+                                <strong className="text-white">{urlList.length} Url's acortadas</strong>
                             </th>
                         </tr>
                     </thead>

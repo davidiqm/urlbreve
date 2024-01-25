@@ -39,6 +39,8 @@ class UrlController extends Controller
     public function store(Request $request)
     {
         //validaciones
+        // dd($request->server('REMOTE_ADDR'));
+        dd($request);
 
         //shortUrl
         $url = UrlHelper::createShortUrl($request->url);
