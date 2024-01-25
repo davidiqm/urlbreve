@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('url');
             $table->datetime('expiration')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('visits')->default(0);
             $table->timestamps();
         });
     }

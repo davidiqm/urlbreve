@@ -11,33 +11,29 @@ use Illuminate\Support\Facades\Response;
 
 class UrlController extends Controller
 {
-    public function get(Request $request)
+    public function get(Request $request, $id)
     {
-        $urls = Url::where('user_id', Auth::id())->get();
+        $url = Url::findOrFail($id);
 
-        foreach ($urls as $url)
-        {
-            $url->urlShorten = route("/") . "/" . $url->code;
-        }
+        $url->urlShorten = route("/") . "/" . $url->code;
+        $url->userName = $url->user->name;
 
-        return Response::json($urls);
+        return Response::json($url);
     }
 
     public function show($code)
     {
-
-        // dd($request);
-        // dd($code);
         $url = Url::where('code', $code)->firstOrFail();
 
-        if ($url)
-        {
-            return Redirect::away($url->url);
-        }
-        else
+        if (!$url)
         {
             abort(404);
         }
+
+        $url->visits += 1;
+        $url->save();
+
+        return Redirect::away($url->url);
     }
 
     public function store(Request $request)

@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     //url
-    Route::get('/url/list', [UrlController::class, 'get'])->name('url.get');
+    Route::get('/url/{id}', [UrlController::class, 'get'])->name('url.get');
 });
 
 Route::get('{code}', [UrlController::class, 'show'])->name('url.show');

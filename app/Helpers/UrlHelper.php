@@ -14,7 +14,6 @@ class UrlHelper
         ]);
 
         $code = CodeGenerator::generateCode(auth()->user()->id);
-
         $user->code = $code;
 
         return $user;
@@ -25,6 +24,9 @@ class UrlHelper
         $user = new Url([
             'url' => $urlString,
         ]);
+
+        $code = CodeGenerator::generateCode(-1);
+        $user->code = $code;
 
         return $user;
     }
