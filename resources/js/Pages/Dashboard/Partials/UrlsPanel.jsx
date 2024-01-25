@@ -1,5 +1,5 @@
-import moment from "moment"
 import { useEffect, useState } from "react"
+import moment from "moment"
 import UrlInfo from "./UrlInfo"
 
 
@@ -9,28 +9,38 @@ const UrlElement = ({url, setUrlId}) => {
         <tr className="border">
             <td className="p-4 cursor-pointer hover:bg-gray-100 active:bg-gray-200" onClick={() => setUrlId(url.id)}>
                 <small>{moment(url.created_at).format('MMMM DDD')}</small><br />
-                <a href={url.urlShorten} target="_blank">{url.urlShorten}</a>br
+                <p>{url.urlShorten}</p>
                 <p>Visitas: 0</p>
             </td>
         </tr>
     )
 }
 
-export default function UrlsPanel ({urls}) {
+export default function UrlsPanel () {
+    const [urls, setUrls] = useState()
     const [urlSelected, setUrlSelected] = useState();
     const [urlId, setUrlId] = useState()
+    const [listUrls, setListUrls] = useState()
 
-    const listUrls = urls.map(url =>
-        <UrlElement key={url.id} url={url} setUrlId={setUrlId} />
-    )
+    useEffect(() => {
+        fetch(route('url.get'))
+            .then(res => res.json())
+            .then(data => {
+                setUrls(data)
+                setListUrls(data.map(url => {
+                     return <UrlElement key={url.id} url={url} setUrlId={setUrlId} />
+                }))
+            })
+    }, [])
 
     useEffect(() => {
         if (urlId) {
             const selected = urls.find(el => el.id == urlId)
-            console.log(selected)
             setUrlSelected(selected)
         }
     }, [urlId])
+
+    if (!urls) return <p>Cargando...</p>
 
     return (
         <div className="flex flex-row auto-cols-max gap-4">

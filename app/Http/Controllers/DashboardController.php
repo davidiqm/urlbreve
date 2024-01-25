@@ -10,15 +10,6 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $urls = Url::all();
-
-        foreach ($urls as $url)
-        {
-            $url->urlShorten = route("/") . "/" . $url->code;
-        }
-
-        return Inertia::render('Dashboard/Dashboard', [
-            'urls' => $urls,
-        ]);
+        return Inertia::render('Dashboard/Dashboard');
     }
 }

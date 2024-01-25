@@ -31,5 +31,5 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('{code}', [UrlController::class, 'show'])->name('url.show');
-Route::get('url/{id}', [UrlController::class, 'get'])->name('url.get');
+Route::get('/url/list', [UrlController::class, 'get'])->name('url.get');
 Route::post('/url', [UrlController::class, 'store'])->name('url.store');

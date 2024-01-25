@@ -5,17 +5,22 @@ namespace App\Http\Controllers;
 use App\Helpers\UrlHelper;
 use App\Models\Url;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 
 class UrlController extends Controller
 {
-    public function get(Request $request, $id)
+    public function get(Request $request)
     {
-        $url = Url::where('id', $id)->firstOrFail();
-        $url->urlShorten = route("/") . "/" . $url->code;
+        $urls = Url::where('user_id', Auth::id())->get();
 
-        return Response::json($url);
+        foreach ($urls as $url)
+        {
+            $url->urlShorten = route("/") . "/" . $url->code;
+        }
+
+        return Response::json($urls);
     }
 
     public function show($code)

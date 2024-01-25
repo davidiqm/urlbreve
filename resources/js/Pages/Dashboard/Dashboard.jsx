@@ -3,7 +3,7 @@ import { Head } from '@inertiajs/react';
 import UrlForm from './Partials/UrlForm';
 import UrlsPanel from './Partials/UrlsPanel';
 
-export default function Dashboard({ auth, urls }) {
+export default function Dashboard({ auth }) {
 
     return (
         <AuthenticatedLayout
@@ -18,10 +18,9 @@ export default function Dashboard({ auth, urls }) {
                         <UrlForm />
                     </div>
 
-                    {urls &&
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4">
-                        <UrlsPanel urls={urls} />
-                    </div>}
+                        <UrlsPanel />
+                    </div>
                 </div>
             </div>
         </AuthenticatedLayout>
