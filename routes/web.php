@@ -28,8 +28,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    //url
+    Route::get('/url/list', [UrlController::class, 'get'])->name('url.get');
 });
 
 Route::get('{code}', [UrlController::class, 'show'])->name('url.show');
-Route::get('/url/list', [UrlController::class, 'get'])->name('url.get');
 Route::post('/url', [UrlController::class, 'store'])->name('url.store');
