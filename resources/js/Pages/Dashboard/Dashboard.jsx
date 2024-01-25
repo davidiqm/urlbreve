@@ -1,7 +1,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import UrlForm from './Partials/UrlForm';
-import UrlList from './Partials/UrlList';
+import UrlsPanel from './Partials/UrlsPanel';
 
 export default function Dashboard({ auth, urls }) {
 
@@ -20,7 +20,7 @@ export default function Dashboard({ auth, urls }) {
 
                     {urls &&
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4">
-                        <UrlList urls={urls} />
+                        <UrlsPanel urls={urls} />
                     </div>}
                 </div>
             </div>

@@ -13,8 +13,9 @@ export default function UrlInfo ({url}) {
         });
     }
 
+
     return (
-        <div>
+        <div className="px-3 py-5 shadow-md">
             <h1>{url.url}</h1>
             <p>{url.urlShorten}</p>
             <button onClick={handleCopyToClipboard}>Copiar</button>

@@ -4,20 +4,19 @@ import UrlInfo from "./UrlInfo"
 
 
 const UrlElement = ({url, setUrlId}) => {
-    const urlShorten = `${route("/")}/${url.code}`
 
     return (
         <tr className="border">
-            <td className="p-4 cursor-pointer" onClick={() => setUrlId(url.id)}>
+            <td className="p-4 cursor-pointer hover:bg-gray-100 active:bg-gray-200" onClick={() => setUrlId(url.id)}>
                 <small>{moment(url.created_at).format('MMMM DDD')}</small><br />
-                <a href={urlShorten} target="_blank">{urlShorten}</a>br
+                <a href={url.urlShorten} target="_blank">{url.urlShorten}</a>br
                 <p>Visitas: 0</p>
             </td>
         </tr>
     )
 }
 
-export default function UrlList ({urls}) {
+export default function UrlsPanel ({urls}) {
     const [urlSelected, setUrlSelected] = useState();
     const [urlId, setUrlId] = useState()
 
@@ -27,9 +26,9 @@ export default function UrlList ({urls}) {
 
     useEffect(() => {
         if (urlId) {
-            fetch(route('url.get', urlId))
-                .then(res => res.json())
-                .then(data => setUrlSelected(data))
+            const selected = urls.find(el => el.id == urlId)
+            console.log(selected)
+            setUrlSelected(selected)
         }
     }, [urlId])
 
@@ -51,7 +50,7 @@ export default function UrlList ({urls}) {
                 </table>
             </aside>
 
-            <div className="border w-full">
+            <div className="w-full">
                 {urlSelected && <UrlInfo url={urlSelected} />}
                 {!urlSelected && <h1>Selecciona una URL</h1>}
             </div>
