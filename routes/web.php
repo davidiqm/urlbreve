@@ -6,7 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UrlController;
 use Illuminate\Support\Facades\Route;
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +31,8 @@ Route::middleware('auth')->group(function () {
 
     //url
     Route::get('/url/{id}', [UrlController::class, 'get'])->name('url.get');
+    Route::post('/url', [UrlController::class, 'store'])->name('url.store');
 });
 
 Route::get('{code}', [UrlController::class, 'show'])->name('url.show');
-Route::post('/url', [UrlController::class, 'store'])->name('url.store');
+Route::post('/', [UrlController::class, 'storePublic'])->name('url.store.public');

@@ -3,10 +3,11 @@
 namespace App\Helpers;
 
 use App\Models\Url;
+use Carbon\Carbon;
 
 class UrlHelper
 {
-    public static function createShortUrl($urlString) : Url
+    public static function createShortUrl($urlString): Url
     {
         $user = new Url([
             'url' => $urlString,
@@ -19,15 +20,20 @@ class UrlHelper
         return $user;
     }
 
-    public static function createShortUrlWithoutUser($urlString) : Url
+    public static function createShortUrlPublic($urlString): Url
     {
-        $user = new Url([
+        $url = new Url([
             'url' => $urlString,
+            'expiration' => Carbon::now()
         ]);
 
-        $code = CodeGenerator::generateCode(-1);
-        $user->code = $code;
+        if (auth()->user()) {
+            $url->user_id = auth()->user()->id;
+        }
 
-        return $user;
+        $code = CodeGenerator::generateCode(-1);
+        $url->code = $code;
+
+        return $url;
     }
 }

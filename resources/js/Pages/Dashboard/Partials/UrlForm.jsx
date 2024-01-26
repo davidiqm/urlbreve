@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 const URL_PATTERN = /(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?\/[a-zA-Z0-9]{2,}|((https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?)|(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})?/
 
-export default function UrlForm() {
+export default function UrlForm({ withUser = false }) {
     const [urlError, setUrlError] = useState(false)
     const { data, setData, post, errors, processing, recentlySuccessful } = useForm({
         url: '',
@@ -27,7 +27,12 @@ export default function UrlForm() {
     const onSubmit = (e) => {
         e.preventDefault()
 
-        post(route('url.store'))
+        if (withUser) {
+            post(route('url.store'))
+            return
+        }
+
+        post(route('url.store.public'))
     }
 
     useEffect(() => {

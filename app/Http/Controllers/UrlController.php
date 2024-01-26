@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
+use Inertia\Inertia;
 
 class UrlController extends Controller
 {
@@ -25,8 +26,7 @@ class UrlController extends Controller
     {
         $url = Url::where('code', $code)->firstOrFail();
 
-        if (!$url)
-        {
+        if (!$url) {
             abort(404);
         }
 
@@ -40,7 +40,7 @@ class UrlController extends Controller
     {
         //validaciones
         // dd($request->server('REMOTE_ADDR'));
-        dd($request);
+        // dd($request);
 
         //shortUrl
         $url = UrlHelper::createShortUrl($request->url);
@@ -48,5 +48,20 @@ class UrlController extends Controller
         $url->save();
 
         return Redirect::route('dashboard');
+    }
+
+    public function storePublic(Request $request)
+    {
+        //validaciones
+        // dd($request->server('REMOTE_ADDR'));
+        // dd($request);
+
+        //shortUrl
+        $url = UrlHelper::createShortUrlPublic($request->url);
+        $url->save();
+
+        $url->urlShorten = route("/") . "/" . $url->code;
+
+        return Inertia::render('Home/Home', ['url' => $url]);
     }
 }
