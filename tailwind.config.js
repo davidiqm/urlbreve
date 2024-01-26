@@ -19,6 +19,11 @@ export default {
                 "primary-color": "var(--primary-color)",
                 "secondary-color": "var(--secondary-color)",
             },
+            screens: {
+                sm: "300px",
+                md: "768",
+                lg: "1024px",
+            },
         },
     },
 

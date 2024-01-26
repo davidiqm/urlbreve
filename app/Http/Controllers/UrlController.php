@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\UrlHelper;
 use App\Models\Url;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -24,7 +25,7 @@ class UrlController extends Controller
 
     public function show($code)
     {
-        $url = Url::where('code', $code)->firstOrFail();
+        $url = Url::where('code', $code)->where('expiration', '>=', Carbon::now())->firstOrFail();
 
         if (!$url) {
             abort(404);

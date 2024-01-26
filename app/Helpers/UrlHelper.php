@@ -24,7 +24,7 @@ class UrlHelper
     {
         $url = new Url([
             'url' => $urlString,
-            'expiration' => Carbon::now()
+            'expiration' => Carbon::now()->addDays(2)
         ]);
 
         if (auth()->user()) {

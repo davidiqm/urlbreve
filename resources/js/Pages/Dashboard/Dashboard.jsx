@@ -14,7 +14,7 @@ export default function Dashboard({ auth, urlList }) {
 
             <div className="py-6">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-                    <div className="bg-white py-6 px-10 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <UrlForm withUser={true} />
                     </div>
 

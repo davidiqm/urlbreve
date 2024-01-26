@@ -21,7 +21,7 @@ export default function UrlsPanel ({ urlList }) {
     const urlListElements = urlList.map(url => <UrlElement key={url.id} url={url} setUrlId={setUrlId} />)
 
     return (
-        <div className="flex flex-row auto-cols-max gap-4">
+        <div className="flex flex-row sm:flex-col-reverse lg:flex-row gap-4">
             <aside className="lg:w-72">
                 <table className="w-full border rounded-md">
                     <thead className="bg-gray-800">
@@ -32,7 +32,7 @@ export default function UrlsPanel ({ urlList }) {
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody className="">
                         {urlListElements}
                     </tbody>
                 </table>

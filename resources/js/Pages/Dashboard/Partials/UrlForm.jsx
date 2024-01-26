@@ -40,14 +40,14 @@ export default function UrlForm({ withUser = false }) {
     }, [recentlySuccessful])
 
     return (
-        <div>
+        <div className="py-7 px-10 sm:py-5 sm:px-3 md:py-5 md:px-10 lg:py-7 lg:px-10">
             <div className="mb-3">
                 <h1>¡Acorta tu URL!</h1>
             </div>
 
             <div>
-                <form onSubmit={onSubmit} className="flex flex-row items-center gap-5">
-                    <div className="flex-auto">
+                <form onSubmit={onSubmit} className="flex flex-row sm:flex-col lg:flex-row items-center gap-5">
+                    <div className="w-full">
                         <TextInput
                             id="url"
                             onChange={handleUrlInput}
@@ -62,7 +62,7 @@ export default function UrlForm({ withUser = false }) {
 
                     </div>
 
-                    <div>
+                    <div className="flex-none">
                         <PrimaryButton disabled={processing}>
                             Acortar Url
                         </PrimaryButton>
