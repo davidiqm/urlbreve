@@ -41,17 +41,17 @@ export default function UrlForm({ withUser = false }) {
 
     return (
         <div className="py-7 px-10 sm:py-5 sm:px-3 md:py-5 md:px-10 lg:py-7 lg:px-10">
-            <div className="mb-3">
-                <h1>¡Acorta tu URL!</h1>
+            <div>
+                <h1 className="text-lg font-semibold">¡Acorta tu URL!</h1>
             </div>
 
-            <div>
+            <div className="mt-2 mb-3">
                 <form onSubmit={onSubmit} className="flex flex-row sm:flex-col lg:flex-row items-center gap-5">
                     <div className="w-full">
                         <TextInput
                             id="url"
                             onChange={handleUrlInput}
-                            className="w-full"
+                            className="w-full text-black"
                             type="url"
                             required
                             isFocused
@@ -72,7 +72,7 @@ export default function UrlForm({ withUser = false }) {
 
             <div className="">
                 {errors.url && <InputError className="mt-2" message={errors.url} />}
-                {urlError && <p>Url Error</p>}
+                {urlError && <small className="text-sm text-red-500 font-semibold">Ingresa un Url válido.</small>}
             </div>
 
         </div>

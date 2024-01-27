@@ -16,8 +16,11 @@ export default {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
             },
             colors: {
-                "primary-color": "var(--primary-color)",
-                "secondary-color": "var(--secondary-color)",
+                "tema-1": "var(--tema-1)",
+                "tema-2": "var(--tema-2)",
+                "tema-3": "var(--tema-3)",
+                "tema-4": "var(--tema-4)",
+                "tema-5": "var(--tema-5)",
             },
             screens: {
                 sm: "300px",

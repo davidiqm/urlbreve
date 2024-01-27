@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 :root {
-    --primary-color: #002553;
-    --secondary-color: #296198;
+    --tema-1: #cccccc;
+    --tema-2: #b11623;
+    --tema-3: #9f111b;
+    --tema-4: #292c37;
+    --tema-5: #000000;
 }

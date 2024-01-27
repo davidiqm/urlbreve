@@ -25,9 +25,12 @@ class UrlController extends Controller
 
     public function show($code)
     {
-        $url = Url::where('code', $code)->where('expiration', '>=', Carbon::now())->firstOrFail();
+        $url = Url::where('code', $code)->firstOrFail();
 
-        if (!$url) {
+        if (!$url) abort(404);
+
+        if ($url->expiration && $url->expiration <= Carbon::now()) {
+            $url->delete();
             abort(404);
         }
 
