@@ -56,7 +56,7 @@ export default function Home({ auth, url }) {
                         </p>
                     </div>
 
-                    <div className="bg-tema-1 text-white mt-24 sm:mt-10 lg:mt-14 overflow-hidden shadow-lg rounded-lg ">
+                    <div className="bg-tema-1 mt-24 sm:mt-10 lg:mt-14 overflow-hidden shadow-lg rounded-lg ">
                         <UrlForm />
                     </div>
 
