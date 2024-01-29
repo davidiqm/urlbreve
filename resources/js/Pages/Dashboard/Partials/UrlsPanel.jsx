@@ -6,9 +6,9 @@ import UrlInfo from "./UrlInfo"
 const UrlElement = ({ url, setUrlId }) => {
     return (
         <tr className="border">
-            <td className="p-4 cursor-pointer hover:bg-gray-100 active:bg-gray-200" onClick={() => setUrlId(url.id)}>
+            <td className="max-w-72 p-4 cursor-pointer hover:bg-gray-100 active:bg-gray-200" onClick={() => setUrlId(url.id)}>
                 <small>{moment(url.created_at).format('MMMM DDD')}</small><br />
-                <p>{url.urlShorten}</p>
+                <p className="break-words">{url.urlShorten}</p>
                 <p>Visitas: {url.visits}</p>
             </td>
         </tr>

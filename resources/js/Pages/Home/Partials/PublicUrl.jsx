@@ -35,13 +35,13 @@ export default function PublicUrl({ url }) {
     return (
         <div className="bg-white px-10 py-12 shadow-lg rounded-lg">
             <h2 className="mb-6 text-3xl font-semibold">¡Url Acortada! Mira cómo quedó:</h2>
-            <h3>Url original: <a href={url.url} target="_blank" rel="noopener noreferrer">{url.url}</a></h3>
+            <h3>Url original: <a href={url.url} target="_blank" rel="noopener noreferrer" className="break-words">{url.url}</a></h3>
             <small>{moment(url.created_at).format('MMMM DDD, YYYY hh:mm A')}</small>
-            <div className="flex flex-row items-center">
-                <p className="w-full">Url breve: <a href={url.urlShorten} target="_blank" rel="noopener noreferrer">{url.urlShorten}</a></p>
+            <div className="flex sm:flex-col lg:flex-row items-center">
+                <p className="w-full">Url breve: <a href={url.urlShorten} target="_blank" rel="noopener noreferrer" className="break-words">{url.urlShorten}</a></p>
                 <PrimaryButton onClick={handleCopyToClipboard} className="items-end">Copiar</PrimaryButton>
             </div>
-            <p>Visitas: {url.visits}</p>
+            <p>Caduca: {moment(url.expiration).format('MMMM DDD, YYYY hh:mm A')}</p>
             <div className="flex items-end gap-5 mt-8">
                 <div className="h-auto max-w-32 w-full">
                     {url.urlShorten &&

@@ -45,14 +45,14 @@ export default function UrlInfo ({ urlId }) {
 
     return (
         <div className="px-3 py-5 shadow-md">
-            <h2>Url original: <a href={url.url} target="_blank" rel="noopener noreferrer">{url.url}</a></h2>
+            <h2>Url original: <a href={url.url} target="_blank" rel="noopener noreferrer" className="break-words">{url.url}</a></h2>
             <small>{moment(url.created_at).format('MMMM DDD, YYYY hh:mm A')} por {url.userName}</small>
-            <div className="flex flex-row items-center">
-                <p className="w-full">Url breve: <a href={url.urlShorten} target="_blank" rel="noopener noreferrer">{url.urlShorten}</a></p>
+            <div className="flex sm:flex-col lg:flex-row items-center">
+                <p className="w-full">Url breve: <a href={url.urlShorten} target="_blank" rel="noopener noreferrer" className="break-words">{url.urlShorten}</a></p>
                 <PrimaryButton onClick={handleCopyToClipboard} className="items-end">Copiar</PrimaryButton>
             </div>
             <p>Visitas: {url.visits}</p>
-            <div className="flex items-end gap-5 mt-8">
+            <div className="flex sm:flex-col lg:flex-row sm:items-center lg:items-end gap-5 mt-8">
                 <div className="h-auto max-w-32 w-full">
                     {url.urlShorten &&
                     <QRCode
